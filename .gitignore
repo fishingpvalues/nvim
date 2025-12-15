@@ -1,0 +1,125 @@
+# Neovim dotfiles .gitignore
+# State of the Art (SOTA) Neovim configuration
+
+# Plugin directories (managed by lazy.nvim)
+# These are installed automatically and shouldn't be tracked
+data/
+plugged/
+bundle/
+
+# Lazy.nvim plugin directory
+~/.local/share/nvim/lazy/
+
+# Neovim cache and temporary files
+*.swp
+*.swo
+*~
+*.tmp
+.cache/
+*.log
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.stackdump
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Build artifacts
+dist/
+build/
+*.o
+*.so
+*.dylib
+*.dll
+
+# Sensitive data
+.env
+.env.local
+.env.*.local
+secrets.json
+config.local.lua
+config.local.vim
+
+# Session files
+Session.vim
+.session
+
+# Backup files
+*.bak
+*.backup
+
+# Test files (shouldn't be in dotfiles)
+test.*
+*_test.*
+*_spec.*
+
+# Temporary files
+*.tmp
+*.temp
+
+# Lock files (regenerate as needed)
+package-lock.json
+yarn.lock
+Cargo.lock
+
+# Mason (LSP package manager) registry cache
+.mason/
+
+# Neovim undo files
+*.undo
+
+# Spell files
+*.spl
+
+# Netrw history
+.netrwhist
+
+# Command history
+.histfile
+
+# FZF cache
+.fzf_history
+
+# Telescope cache
+.telescope/
+
+# DAP (Debug Adapter Protocol) cache
+.dap/
+
+# Neotest cache
+.neotest/
+
+# Git (if this is a bare repo setup)
+.git/
+
+# Local configuration overrides
+local.lua
+local.vim

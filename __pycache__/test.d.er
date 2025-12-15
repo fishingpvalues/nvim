@@ -1,6 +1,0 @@
-##[pylyzer] failed /home/danielf/.config/nvim/test.py 1764884602 52
-.np = pyimport "__init__.pyi"
-.__init__.pyi = pyimport "__init__.pyi"
-
-.this: Never
-
