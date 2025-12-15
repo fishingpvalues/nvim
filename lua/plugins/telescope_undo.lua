@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/debugloop/telescope-undo.nvim
 return {
   'debugloop/telescope-undo.nvim',
+  enabled = false,
   event = 'VeryLazy',
   dependencies = {
     'nvim-telescope/telescope.nvim',

@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/rktjmp/highlight-current-n.nvim
 return {
   "rktjmp/highlight-current-n.nvim",
+  enabled = false,
   event = "VeryLazy",
   config = function()
     require("highlight_current_n").setup({

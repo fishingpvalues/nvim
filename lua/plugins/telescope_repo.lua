@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/cljoly/telescope-repo.nvim
 return {
   "cljoly/telescope-repo.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvim-telescope/telescope.nvim",

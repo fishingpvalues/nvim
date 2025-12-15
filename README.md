@@ -14,5 +14,5 @@ Notes
   - Wayland: `wl-clipboard` (wl-copy)
   - X11: `xclip` or `xsel`
 - Folds: uses Treesitter when available, falls back to `indent` otherwise.
-- Fuzzy finder: uses Telescope. Alternative pickers (fzf-lua, mini.fuzzy, etc.) are disabled to keep things lean.
-
+- Fuzzy finder: uses fzf-lua (Telescope and its extensions are disabled).
+- Bars: top bar via barbecue (breadcrumbs) + bottom bar via lualine (statusline) with non-redundant info.

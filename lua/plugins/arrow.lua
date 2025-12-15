@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/otavioschwanck/arrow.nvim
 return {
   "otavioschwanck/arrow.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvim-tree/nvim-web-devicons",

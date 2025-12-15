@@ -1,6 +1,7 @@
 -- nvim-spectre: Project-wide search/replace
 return {
   "nvim-pack/nvim-spectre",
+  enabled = false,
   event = "VeryLazy",
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()

@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/nvimdev/hlsearch.nvim
 return {
   "nvimdev/hlsearch.nvim",
+  enabled = false,
   event = "BufRead",
   config = function()
     require("hlsearch").setup()

@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/jvgrootveld/telescope-zoxide
 return {
   "jvgrootveld/telescope-zoxide",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvim-telescope/telescope.nvim",

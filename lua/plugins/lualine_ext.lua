@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/Mr-LLLLL/lualine-ext.nvim
 return {
   "Mr-LLLLL/lualine-ext.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvim-lualine/lualine.nvim",

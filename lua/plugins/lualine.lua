@@ -66,14 +66,16 @@ return {
 
     local function get_os_icon()
       local sysname = vim.loop.os_uname().sysname
-      if string.find(sysname, 'Linux') then
-        return ' '
-      elseif string.find(sysname, 'Darwin') then
-        return ' '
-      elseif string.find(sysname, 'Windows') then
-        return ' '
+      local nerd = vim.g.have_nerd_font
+      if not nerd then return '' end
+      if sysname:find('Linux') then
+        return ''
+      elseif sysname:find('Darwin') then
+        return ''
+      elseif sysname:find('Windows') then
+        return ''
       else
-        return ''
+        return ''
       end
     end
 
@@ -252,13 +254,7 @@ return {
             separator = { right = '' },
             left_padding = 2,
           },
-          {
-            get_os_icon,
-            color = { fg = colors.white, bg = colors.violet, gui = 'bold' },
-            separator = { right = '' },
-            left_padding = 1,
-            right_padding = 1,
-          },
+          { get_os_icon, color = { fg = colors.white, bg = colors.violet, gui = 'bold' } },
         },
       },
       inactive_sections = {

@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/chrisgrieser/nvim-rip-substitute
 return {
   "chrisgrieser/nvim-rip-substitute",
+  enabled = false,
   event = "VeryLazy",
   cmd = "RipSubstitute",
   config = function()

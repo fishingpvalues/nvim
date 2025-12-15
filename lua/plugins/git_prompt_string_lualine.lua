@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/mikesmithgh/git-prompt-string-lualine.nvim
 return {
   "mikesmithgh/git-prompt-string-lualine.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvim-lualine/lualine.nvim",

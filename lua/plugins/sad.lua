@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/ray-x/sad.nvim
 return {
   "ray-x/sad.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = { "ray-x/guihua.lua" },
   config = function()

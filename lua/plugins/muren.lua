@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/AckslD/muren.nvim
 return {
   "AckslD/muren.nvim",
+  enabled = false,
   event = "VeryLazy",
   config = function()
     require("muren").setup({

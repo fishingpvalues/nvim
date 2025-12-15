@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/crispgm/telescope-heading.nvim
 return {
   "crispgm/telescope-heading.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvim-telescope/telescope.nvim",

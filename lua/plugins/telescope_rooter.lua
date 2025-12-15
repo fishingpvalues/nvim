@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/desdic/telescope-rooter.nvim
 return {
   "desdic/telescope-rooter.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvim-telescope/telescope.nvim",

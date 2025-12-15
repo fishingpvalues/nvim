@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/tomasky/bookmarks.nvim
 return {
   "tomasky/bookmarks.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvim-telescope/telescope.nvim",

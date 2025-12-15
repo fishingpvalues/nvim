@@ -2,13 +2,25 @@
 -- GitHub: https://github.com/ibhagwan/fzf-lua
 return {
   "ibhagwan/fzf-lua",
-  enabled = false, -- Disabled to avoid overlap with Telescope
+  enabled = true,
   event = "VeryLazy",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("fzf-lua").setup({
+    local fzf = require("fzf-lua")
+
+    -- Choose file command dynamically (fd -> rg -> git)
+    local files_cmd
+    if vim.fn.executable('fd') == 1 then
+      files_cmd = "fd --type f --hidden --follow --exclude .git"
+    elseif vim.fn.executable('rg') == 1 then
+      files_cmd = "rg --files --hidden -g '!.git'"
+    else
+      files_cmd = nil -- let fzf-lua choose (git ls-files or fallback)
+    end
+
+    fzf.setup({
       -- Window options
       winopts = {
         height = 0.85,
@@ -45,7 +57,7 @@ return {
 
       -- Files picker
       files = {
-        cmd = "fd --type f --hidden --follow",
+        cmd = files_cmd,
         actions = {
           ["default"] = require("fzf-lua.actions").file_edit,
           ["ctrl-v"] = require("fzf-lua.actions").file_vsplit,
@@ -67,31 +79,23 @@ return {
       },
     })
 
-    -- Keybindings
-    local fzf = require("fzf-lua")
-
-    vim.keymap.set("n", "<leader>ff", function()
-      fzf.files()
-    end, { desc = "[F]zf [F]iles" })
-
-    vim.keymap.set("n", "<leader>fg", function()
-      fzf.grep()
-    end, { desc = "[F]zf [G]rep" })
-
-    vim.keymap.set("n", "<leader>fb", function()
-      fzf.buffers()
-    end, { desc = "[F]zf [B]uffers" })
-
-    vim.keymap.set("n", "<leader>fh", function()
-      fzf.help_tags()
-    end, { desc = "[F]zf [H]elp tags" })
-
-    vim.keymap.set("n", "<leader>fc", function()
-      fzf.commands()
-    end, { desc = "[F]zf [C]ommands" })
-
-    vim.keymap.set("n", "<leader>fr", function()
-      fzf.recent()
-    end, { desc = "[F]zf [R]ecent" })
+    -- Telescope-like keybindings
+    vim.keymap.set('n', '<leader>sh', fzf.help_tags, { desc = '[S]earch [H]elp' })
+    vim.keymap.set('n', '<leader>sk', fzf.keymaps, { desc = '[S]earch [K]eymaps' })
+    vim.keymap.set('n', '<leader>sf', fzf.files, { desc = '[S]earch [F]iles' })
+    vim.keymap.set('n', '<leader>ss', fzf.builtin, { desc = '[S]earch [S]elect Picker' })
+    vim.keymap.set('n', '<leader>sw', fzf.grep_cword, { desc = '[S]earch current [W]ord' })
+    vim.keymap.set('n', '<leader>sg', fzf.live_grep, { desc = '[S]earch by [G]rep' })
+    vim.keymap.set('n', '<leader>sd', fzf.diagnostics_workspace, { desc = '[S]earch [D]iagnostics' })
+    vim.keymap.set('n', '<leader>sr', fzf.resume, { desc = '[S]earch [R]esume' })
+    vim.keymap.set('n', '<leader>s.', fzf.oldfiles, { desc = '[S]earch Recent Files' })
+    vim.keymap.set('n', '<leader><leader>', fzf.buffers, { desc = '[ ] Find existing buffers' })
+    vim.keymap.set('n', '<leader>/', fzf.grep_curbuf, { desc = '[/] Search in current buffer' })
+    vim.keymap.set('n', '<leader>s/', function()
+      fzf.live_grep({ grep_open_files = true })
+    end, { desc = '[S]earch [/] in Open Files' })
+    vim.keymap.set('n', '<leader>sn', function()
+      fzf.files({ cwd = vim.fn.stdpath('config') })
+    end, { desc = '[S]earch [N]eovim files' })
   end,
 }

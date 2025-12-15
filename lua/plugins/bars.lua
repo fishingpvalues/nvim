@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/OXY2DEV/bars.nvim
 return {
   "OXY2DEV/bars.nvim",
+  enabled = false,
   event = "VeryLazy",
   config = function()
     -- bars.nvim serves as a reference guide for building custom UI components

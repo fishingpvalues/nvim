@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/prochri/telescope-all-recent.nvim
 return {
   "prochri/telescope-all-recent.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvim-telescope/telescope.nvim",

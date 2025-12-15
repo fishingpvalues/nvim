@@ -1,6 +1,7 @@
 -- yaml-companion.nvim: Get, set and autodetect YAML schemas in your buffers
 return {
   "someone-stole-my-name/yaml-companion.nvim",
+  enabled = false,
   dependencies = {
     "neovim/nvim-lspconfig",
     "nvim-telescope/telescope.nvim",

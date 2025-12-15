@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/linrongbin16/lsp-progress.nvim
 return {
   'linrongbin16/lsp-progress.nvim',
+  enabled = false,
   event = 'VeryLazy',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()

@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/otavioschwanck/telescope-alternate.nvim
 return {
   "otavioschwanck/telescope-alternate.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvim-telescope/telescope.nvim",
