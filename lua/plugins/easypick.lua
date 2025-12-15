@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/axkirillov/easypick.nvim
 return {
   "axkirillov/easypick.nvim",
+  enabled = false, -- Disabled to keep a single fuzzy finder
   event = "VeryLazy",
   dependencies = {
     "nvim-telescope/telescope.nvim",

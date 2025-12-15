@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/ibhagwan/fzf-lua
 return {
   "ibhagwan/fzf-lua",
+  enabled = false, -- Disabled to avoid overlap with Telescope
   event = "VeryLazy",
   dependencies = {
     "nvim-tree/nvim-web-devicons",

@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/bassamsdata/namu.nvim
 return {
   "bassamsdata/namu.nvim",
+  enabled = false, -- Disabled to avoid fuzzy-finder overlap
   event = "VeryLazy",
   dependencies = {
     "nvim-telescope/telescope.nvim",

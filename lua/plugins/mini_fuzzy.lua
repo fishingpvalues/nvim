@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/echasnovski/mini.nvim
 return {
   "echasnovski/mini.fuzzy",
+  enabled = false, -- Disabled to avoid duplicate fuzzy logic with Telescope
   version = false,
   event = "VeryLazy",
   config = function()

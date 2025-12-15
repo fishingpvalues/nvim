@@ -1,5 +1,6 @@
 return {
   "nvim-mini/mini.clue",
+  enabled = false, -- Disabled to avoid overlap with which-key
   event = "VeryLazy",
   config = function()
     local miniclue = require('mini.clue')

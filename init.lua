@@ -12,12 +12,22 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Region Folding: recommended fold settings
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldenable = true
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
+-- Region Folding: prefer Treesitter when available, safe fallback otherwise
+do
+  local has_ts_fold = false
+  pcall(function()
+    has_ts_fold = (vim.fn.exists('*nvim_treesitter#foldexpr') == 1)
+  end)
+  if has_ts_fold then
+    vim.opt.foldmethod = 'expr'
+    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+  else
+    vim.opt.foldmethod = 'indent'
+  end
+  vim.opt.foldenable = true
+  vim.opt.foldlevel = 99
+  vim.opt.foldlevelstart = 99
+end
 
 
 -- Make line numbers default
@@ -32,13 +42,22 @@ vim.o.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
+-- Sync clipboard between OS and Neovim when a provider is available
+-- Avoid noisy errors on systems without pbcopy/xclip/wl-copy
+local function clipboard_available()
+  if vim.fn.has('mac') == 1 or vim.fn.has('macunix') == 1 then
+    return vim.fn.executable('pbcopy') == 1
+  end
+  if vim.env.WAYLAND_DISPLAY and vim.env.WAYLAND_DISPLAY ~= '' then
+    return vim.fn.executable('wl-copy') == 1
+  end
+  return vim.fn.executable('xclip') == 1 or vim.fn.executable('xsel') == 1
+end
+if clipboard_available() then
+  vim.schedule(function()
+    vim.o.clipboard = 'unnamedplus'
+  end)
+end
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -140,6 +159,20 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- OS-specific convenience keybindings
+do
+  local is_mac = (vim.fn.has('mac') == 1 or vim.fn.has('macunix') == 1)
+  if is_mac then
+    -- macOS: map Command-S to save
+    pcall(vim.keymap.set, 'n', '<D-s>', ':w<CR>', { desc = 'Save file (macOS Command-S)' })
+    pcall(vim.keymap.set, 'i', '<D-s>', '<Esc>:w<CR>a', { desc = 'Save file (macOS Command-S)' })
+  else
+    -- Linux/BSD: map Alt-S to save (won't work in all terminals)
+    pcall(vim.keymap.set, 'n', '<M-s>', ':w<CR>', { desc = 'Save file (Alt-S)' })
+    pcall(vim.keymap.set, 'i', '<M-s>', '<Esc>:w<CR>a', { desc = 'Save file (Alt-S)' })
+  end
+end
+
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
@@ -227,7 +260,8 @@ require('lazy').setup({
       },
     },
   },
-  { -- Fuzzy Finder (files, lsp, etc)
+  -- Fuzzy Finder (Telescope) — kept as primary picker; disable other pickers in plugins/ to avoid overlap
+  {
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     dependencies = {
