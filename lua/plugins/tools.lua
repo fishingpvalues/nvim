@@ -52,18 +52,6 @@ return {
     opts = {},
   },
 
-  -- Kubernetes (already in lang-yaml but more comprehensive here)
-  {
-    "Ramilito/kubectl.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    cmd = { "Kubectl" },
-    keys = {
-      { "<leader>k", "<cmd>Kubectl<cr>", desc = "Kubectl" },
-    },
-    config = function()
-      require("kubectl").setup()
-    end,
-  },
 
   -- DBee (database client)
   {
@@ -124,17 +112,4 @@ return {
     },
   },
 
-  -- Schema companion (better JSON/YAML schemas)
-  {
-    "someone-stole-my-name/yaml-companion.nvim",
-    ft = { "yaml", "yaml.docker-compose" },
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "nvim-lua/plenary.nvim",
-      "ibhagwan/fzf-lua",
-    },
-    config = function()
-      require("telescope").load_extension("yaml_schema")
-    end,
-  },
 }

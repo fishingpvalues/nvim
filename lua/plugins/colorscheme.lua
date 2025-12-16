@@ -11,11 +11,17 @@ return {
     opts = {
       transparent = false,
       terminal_colors = true,
+      semantic = true, -- Enhanced semantic highlighting
       styles = {
         comments = { italic = true },
         keywords = { bold = true },
         functions = {},
         variables = {},
+        types = {},
+        conditionals = {},
+        strings = {},
+        numbers = {},
+        operators = {},
       },
     },
     config = function(_, opts)

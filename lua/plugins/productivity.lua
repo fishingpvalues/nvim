@@ -67,7 +67,7 @@ return {
   -- Scissors (snippet manager)
   {
     "chrisgrieser/nvim-scissors",
-    dependencies = { "nvim-telescope/telescope.nvim", "L3MON4D3/LuaSnip" },
+    dependencies = { "ibhagwan/fzf-lua", "L3MON4D3/LuaSnip" }, -- Use fzf-lua via vim.ui.select
     keys = {
       { "<leader>se", function() require("scissors").editSnippet() end, desc = "Edit Snippet" },
       { "<leader>sa", function() require("scissors").addNewSnippet() end, mode = { "n", "x" }, desc = "Add Snippet" },

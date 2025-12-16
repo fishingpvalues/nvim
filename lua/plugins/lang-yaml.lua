@@ -10,11 +10,21 @@ return {
     dependencies = {
       { "neovim/nvim-lspconfig" },
       { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope.nvim" },
+      { "ibhagwan/fzf-lua" }, -- Use fzf-lua via vim.ui.select
     },
     config = function()
-      require("telescope").load_extension("yaml_schema")
+      local cfg = require("yaml-companion").setup({
+        -- Configuration options
+        builtin_matchers = {
+          kubernetes = { enabled = true },
+          cloud_init = { enabled = true },
+        },
+      })
+      require("lspconfig")["yamlls"].setup(cfg)
     end,
+    keys = {
+      { "<leader>ys", function() require("yaml-companion").open_ui_select() end, desc = "Select YAML Schema" },
+    },
   },
 
   -- Kubectl integration
@@ -32,7 +42,28 @@ return {
     end,
   },
 
-  -- Helm support
+  -- Helm LSP enhanced integration
+  {
+    "qvalentin/helm-ls.nvim",
+    ft = "helm",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      conceal_templates = {
+        enabled = true,
+      },
+      indent_hints = {
+        enabled = true,
+        only_for_current_line = true,
+      },
+      action_highlight = {
+        enabled = true,
+      },
+    },
+  },
+
+  -- Helm syntax support
   {
     "towolf/vim-helm",
     ft = "helm",

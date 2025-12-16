@@ -20,7 +20,7 @@ return {
     "linux-cultist/venv-selector.nvim",
     dependencies = {
       "neovim/nvim-lspconfig",
-      "nvim-telescope/telescope.nvim",
+      "ibhagwan/fzf-lua", -- Use fzf-lua instead of Telescope
       "mfussenegger/nvim-dap-python",
     },
     ft = "python",

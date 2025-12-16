@@ -181,7 +181,7 @@ return {
     ft = { "yaml" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim",
+      "ibhagwan/fzf-lua", -- Use fzf-lua via vim.ui.select
     },
   },
 
@@ -260,8 +260,8 @@ return {
       { "<leader>ni", "<cmd>Nerdy<cr>", desc = "Nerdy Icons" },
     },
     dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-telescope/telescope.nvim",
+      "stevearc/dressing.nvim", -- Uses vim.ui.select which fzf-lua overrides
+      "ibhagwan/fzf-lua",
     },
   },
 }

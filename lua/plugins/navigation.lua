@@ -8,6 +8,10 @@ return {
     "ibhagwan/fzf-lua",
     cmd = "FzfLua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    init = function()
+      -- Register fzf-lua as vim.ui.select provider for all plugins
+      require("fzf-lua").register_ui_select()
+    end,
     keys = {
       { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find Files" },
       { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent Files" },
