@@ -1,5 +1,6 @@
 return {
   "ravsii/nvim-dap-envfile",
+  enabled = false,
   version = "*", -- use latest stable release
   dependencies = { "mfussenegger/nvim-dap" },
   opts = {

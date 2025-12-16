@@ -1,6 +1,7 @@
 -- DAP Virtual Text configuration
 return {
   "theHamsta/nvim-dap-virtual-text",
+  enabled = false,
   dependencies = {
     "mfussenegger/nvim-dap",
     "nvim-treesitter/nvim-treesitter",

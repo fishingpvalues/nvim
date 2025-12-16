@@ -2,6 +2,7 @@
 -- GitHub: https://github.com/IndianBoy42/tree-sitter-just
 return {
   "IndianBoy42/tree-sitter-just",
+  enabled = false,
   ft = { "just", "justfile" },
   event = "VeryLazy",
   config = function()

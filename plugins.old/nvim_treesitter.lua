@@ -1,8 +1,8 @@
 -- nvim-treesitter: Main Treesitter configuration with parsers
 return {
   'nvim-treesitter/nvim-treesitter',
+  enabled = false,
   build = ':TSUpdate',
-  event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/nvim-treesitter-context',
@@ -71,7 +71,7 @@ return {
       'vimdoc',
       -- Add more parsers as needed
     },
-    auto_install = true,
+    auto_install = false,
     highlight = {
       enable = true,
       -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -129,6 +129,27 @@ return {
     },
   },
   config = function(_, opts)
-    require('nvim-treesitter.configs').setup(opts)
+    -- Use a dedicated parser installation directory to avoid permission issues
+    local parser_dir = vim.fn.stdpath('data') .. '/parsers'
+    if vim.fn.isdirectory(parser_dir) == 0 then
+      pcall(vim.fn.mkdir, parser_dir, 'p')
+    end
+    pcall(function()
+      require('nvim-treesitter.install').prefer_git = false
+      require('nvim-treesitter.install').compilers = require('nvim-treesitter.install').compilers or {}
+      require('nvim-treesitter.install').parser_install_dir = parser_dir
+      if not string.find(vim.o.runtimepath, parser_dir, 1, true) then
+        vim.opt.runtimepath:append(parser_dir)
+      end
+    end)
+
+    local ok, ts = pcall(require, 'nvim-treesitter.configs')
+    if not ok then
+      vim.schedule(function()
+        vim.notify('nvim-treesitter not available; skipping setup', vim.log.levels.WARN)
+      end)
+      return
+    end
+    ts.setup(opts)
   end,
 }

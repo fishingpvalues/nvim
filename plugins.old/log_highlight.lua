@@ -1,6 +1,7 @@
 -- log-highlight.nvim: Syntax highlighting for log files
 return {
   'fei6409/log-highlight.nvim',
+  enabled = false,
   opts = {
     -- File extensions to apply log filetype to
     extension = 'log',

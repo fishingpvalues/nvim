@@ -15,6 +15,7 @@ return {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
+    log_to_file = false,
     -- Recommended config for better UI
     hide_root_node = true,
     retain_hidden_root_indent = true,
