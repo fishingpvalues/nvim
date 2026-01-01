@@ -3,7 +3,7 @@
 -- ============================================================================
 
 return {
-  -- Dashboard
+  -- Dashboard (SOTA Configuration)
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
@@ -27,42 +27,95 @@ return {
         config = {
           header = vim.split(logo, "\n"),
           center = {
+            -- File Navigation
             {
               action = "FzfLua files",
-              desc = " Find file",
+              desc = " Find File",
               icon = " ",
               key = "f",
             },
             {
-              action = "ene | startinsert",
-              desc = " New file",
-              icon = " ",
-              key = "n",
-            },
-            {
               action = "FzfLua oldfiles",
-              desc = " Recent files",
+              desc = " Recent Files",
               icon = " ",
               key = "r",
             },
             {
+              action = "Telescope projects",
+              desc = " Projects",
+              icon = " ",
+              key = "p",
+            },
+            {
+              action = "ene | startinsert",
+              desc = " New File",
+              icon = " ",
+              key = "n",
+            },
+
+            -- Search & Browse
+            {
               action = "FzfLua live_grep",
-              desc = " Find text",
+              desc = " Find Text",
               icon = " ",
               key = "g",
             },
             {
+              action = "Yazi",
+              desc = "󰇥 File Manager",
+              icon = "󰇥 ",
+              key = "y",
+            },
+
+            -- Quick Access
+            {
+              action = "FzfLua files cwd=~/.config/nvim",
+              desc = " Config",
+              icon = " ",
+              key = "c",
+            },
+            {
+              action = "FzfLua files cwd=~/.config",
+              desc = " Dotfiles",
+              icon = " ",
+              key = "d",
+            },
+
+            -- Session & State
+            {
               action = "lua require('persistence').load()",
-              desc = " Restore session",
+              desc = " Restore Session",
               icon = " ",
               key = "s",
             },
+
+            -- Maintenance
             {
               action = "Lazy",
-              desc = " Lazy",
-              icon = " ",
+              desc = "󰒲 Lazy Plugins",
+              icon = "󰒲 ",
               key = "l",
             },
+            {
+              action = "Lazy update",
+              desc = "󰚰 Update Plugins",
+              icon = "󰚰 ",
+              key = "u",
+            },
+            {
+              action = "Mason",
+              desc = " Mason Tools",
+              icon = " ",
+              key = "m",
+            },
+            {
+              action = "checkhealth",
+              desc = "󰓙 Health Check",
+              icon = "󰓙 ",
+              key = "h",
+            },
+
+            -- Exit
             {
               action = "qa",
               desc = " Quit",
@@ -73,7 +126,27 @@ return {
           footer = function()
             local stats = require("lazy").stats()
             local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-            return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
+
+            -- Get current date/time info
+            local datetime = os.date(" %Y-%m-%d   %H:%M:%S")
+            local day = os.date("%A")
+
+            -- Get git info if in a git repo
+            local git_info = ""
+            local handle = io.popen("git branch --show-current 2>/dev/null")
+            if handle then
+              local branch = handle:read("*a"):gsub("\n", "")
+              handle:close()
+              if branch ~= "" then
+                git_info = "  " .. branch
+              end
+            end
+
+            return {
+              "",
+              "⚡ " .. stats.loaded .. "/" .. stats.count .. " plugins loaded in " .. ms .. "ms",
+              datetime .. "  " .. day .. git_info,
+            }
           end,
         },
       }

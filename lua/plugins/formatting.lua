@@ -80,7 +80,7 @@ return {
       local lint = require("lint")
 
       lint.linters_by_ft = {
-        go = { "golangcilint" },
+        go = { "golangci_lint" },
         python = { "ruff" },
         yaml = { "yamllint" },
         lua = { "luacheck" },
@@ -93,15 +93,16 @@ return {
 
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
-      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+      vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
         group = lint_augroup,
         callback = function()
-          lint.try_lint()
+          -- Only lint if linter is available
+          pcall(lint.try_lint)
         end,
       })
 
       vim.keymap.set("n", "<leader>cl", function()
-        lint.try_lint()
+        pcall(lint.try_lint)
       end, { desc = "Trigger linting for current file" })
     end,
   },

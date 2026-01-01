@@ -2,7 +2,38 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:github.com)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(fd:*)",
+      "Bash(wc:*)",
+      "Bash(nvim --headless \"+Lazy! sync\" +qa)",
+      "Bash(tee:*)",
+      "Bash(nvim:*)",
+      "Bash(timeout 10 nvim:*)",
+      "Bash(echo:*)",
+      "Bash(timeout 15 nvim:*)",
+      "Bash(timeout 20 nvim:*)",
+      "Bash(cat:*)",
+      "Bash(timeout 30 nvim:*)",
+      "Bash(timeout 25 nvim:*)",
+      "Bash(timeout 40 nvim:*)",
+      "Bash(command grep -i tree)",
+      "Bash(command grep -i treesitter)",
+      "Bash(command find ~/.config/nvim -name \"*.luac\" -delete)",
+      "Bash(command find ~/.local/share/nvim/lazy -name \"*.luac\" -delete)",
+      "Bash(command grep -rn nvim-treesitter.configs ~/.local/share/nvim/lazy/nvim-treesitter*/)",
+      "Bash(timeout 60 nvim:*)",
+      "Bash(command grep \"nvim-treesitter\\\\.\" /storage/emulated/0/workdir/nvim/lua/plugins/treesitter.lua)",
+      "Bash(command grep \"nvim-treesitter\\\\.\" /storage/emulated/0/workdir/nvim/lua/plugins/treesitter-extended.lua)",
+      "Bash(command grep -r \"nvim-treesitter\\\\.configs\" /storage/emulated/0/workdir/nvim/lua/plugins/)",
+      "WebFetch(domain:dotfyle.com)",
+      "Bash(command grep -rn neoscroll /storage/emulated/0/workdir/nvim/lua/plugins/)",
+      "Bash(command grep -A 5 \"action = \"\"Telescope projects\"\"\" /storage/emulated/0/workdir/nvim/lua/plugins/ui.lua)",
+      "Bash(command find ~/.config/nvim ~/.local/share/nvim -name \"*.luac\" -delete)",
+      "Bash(command grep -c \"Projects\" /storage/emulated/0/workdir/nvim/lua/plugins/ui.lua)",
+      "Bash(command grep -c \"Update Plugins\" /storage/emulated/0/workdir/nvim/lua/plugins/ui.lua)",
+      "Bash(command grep nvim)",
+      "Bash(readlink -f ~/.config/nvim)"
     ]
   }
 }

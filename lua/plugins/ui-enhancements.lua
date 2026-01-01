@@ -3,6 +3,67 @@
 -- ============================================================================
 
 return {
+  -- Dropbar (winbar with breadcrumbs) - SOTA
+  {
+    "Bekaboo/dropbar.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    keys = {
+      { "<leader>wp", function() require("dropbar.api").pick() end, desc = "Winbar Pick" },
+    },
+    opts = {
+      general = {
+        enable = function(buf, win)
+          return vim.fn.win_gettype(win) == ""
+            and vim.wo[win].winbar == ""
+            and vim.bo[buf].bt == ""
+            and (vim.bo[buf].ft == "markdown" or (buf and vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == ""))
+        end,
+      },
+    },
+  },
+
+  -- Barbecue (VS Code like winbar) - Alternative to dropbar
+  {
+    "utilyre/barbecue.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    enabled = false, -- Disabled by default, enable if you prefer over dropbar
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      theme = "auto",
+      attach_navic = false,
+      show_dirname = true,
+      show_basename = true,
+      show_modified = false,
+    },
+  },
+
+  -- Incline (floating statusline per window) - SOTA
+  {
+    "b0o/incline.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      window = {
+        padding = 0,
+        margin = { horizontal = 0, vertical = 0 },
+      },
+      hide = {
+        cursorline = false,
+      },
+      render = function(props)
+        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+        local icon, color = require("nvim-web-devicons").get_icon_color(filename)
+        return {
+          { icon, guifg = color },
+          { " " },
+          { filename },
+        }
+      end,
+    },
+  },
+
   -- Modicator (mode-based cursor color)
   {
     "mawkler/modicator.nvim",

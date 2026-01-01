@@ -3,6 +3,61 @@
 -- ============================================================================
 
 return {
+  -- LSP Signature (show function signature while typing) - SOTA
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "LspAttach",
+    opts = {
+      bind = true,
+      handler_opts = {
+        border = "rounded",
+      },
+      floating_window = true,
+      floating_window_above_cur_line = true,
+      hint_enable = true,
+      hint_prefix = " ",
+      max_height = 12,
+      max_width = 80,
+      transparency = 10,
+      toggle_key = "<C-k>",
+    },
+  },
+
+  -- LSP Lines (show diagnostics as virtual lines) - SOTA
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    event = "LspAttach",
+    keys = {
+      {
+        "<leader>ul",
+        function()
+          require("lsp_lines").toggle()
+        end,
+        desc = "Toggle LSP Lines",
+      },
+    },
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  },
+
+  -- LSP Progress (show LSP loading progress) - SOTA
+  {
+    "linrongbin16/lsp-progress.nvim",
+    event = "LspAttach",
+    opts = {
+      client_format = function(client_name, spinner, series_messages)
+        return #series_messages > 0 and (spinner .. " " .. client_name) or nil
+      end,
+      format = function(client_messages)
+        if #client_messages > 0 then
+          return table.concat(client_messages, " ")
+        end
+        return ""
+      end,
+    },
+  },
+
   -- LSPSaga
   {
     "nvimdev/lspsaga.nvim",

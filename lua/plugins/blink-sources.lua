@@ -1,5 +1,5 @@
 -- ============================================================================
--- Blink.cmp Additional Sources - All Sources from new.txt
+-- Blink.cmp Additional Sources - Comprehensive SOTA Sources
 -- ============================================================================
 
 return {
@@ -33,11 +33,16 @@ return {
     opts = {},
   },
 
-  -- Blink LaTeX source
+  -- Blink ripgrep source (fast fuzzy completion from project)
   {
     "mikavilpas/blink-ripgrep.nvim",
     dependencies = { "saghen/blink.cmp" },
-    opts = {},
+    opts = {
+      prefix_min_len = 3,
+      get_command = function()
+        return { "rg", "--no-config", "--json" }
+      end,
+    },
   },
 
   -- Blink tmux source
@@ -47,6 +52,14 @@ return {
       return os.getenv("TMUX") ~= nil
     end,
     dependencies = { "saghen/blink.cmp" },
+    opts = {},
+  },
+
+  -- Blink compat for compatibility with nvim-cmp sources
+  {
+    "saghen/blink.compat",
+    version = "*",
+    lazy = true,
     opts = {},
   },
 }
