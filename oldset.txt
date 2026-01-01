@@ -377,27 +377,3 @@ yaml-language-server: LSP server for YAML, handles validation and completion, es
 yamlfmt: Formatter for YAML files, ensures consistent indentation and structure.
 yamllint: Linter for YAML, catches syntax errors and style issues.
 helm-ls: LSP server for Helm charts, provides autocompletion, linting, and diagnostics for Helm-specific YAML/Go templates (confirmed via GitHub as a dedicated tool from mrjosh/helm-ls).
-
-New Plugins to Add
-These are additional Neovim plugins researched from Dotfyle.com (based on usage counts in shared configs) and GitHub (based on relevance, stars, and activity). I focused on high-impact ones for your languages/tools (Go, Python, YAML, Helm/Kubernetes), prioritizing those with strong community adoption (e.g., high usage/stars). Only non-overlapping with your existing list—e.g., no duplicates or direct alternatives (like nvim-tree if you have neo-tree, or render-markdown if you have markview). Selections are "scientific" by cross-referencing top-ranked lists and specific searches for Python/Kubernetes/Helm plugins. I avoided general dependencies (e.g., plenary.nvim, nui.nvim) and ensured they enhance your fzf-lua preference (replacing Telescope). For each, I explain why: relevance to your setup, popularity metrics, and unique value without overlap.
-
-which-key.lua: Displays available keybindings in a popup as you type, helping with discoverability in complex configs. Why: Top-ranked on Dotfyle with 6,775 usages; 4k+ GitHub stars (folke/which-key.nvim); no overlap with your mini_clue or other hint plugins; essential for productivity without moralizing on keymap management.
-friendly-snippets.lua: Collection of preconfigured snippets for various languages, including Go and Python. Why: Ranked on Dotfyle with 2,489 usages; complements your luasnip without overlap; high adoption for snippet expansion in dev workflows (rafamadriz/friendly-snippets).
-bufferline.lua: Snazzy tab-like buffer line with icons and git integration. Why: Ranked on Dotfyle with 4,157 usages; 3k+ GitHub stars (akinsho/bufferline.nvim); no overlap with your incline or other status plugins; improves buffer navigation for multi-language projects like Go/Python.
-helm-ls.lua: Neovim integration for helm-ls LSP, adding Helm-specific features like chart navigation and diagnostics. Why: Found via GitHub search for Helm/Kubernetes plugins; active repo (qvalentin/helm-ls.nvim) with growing adoption; non-overlapping with your yaml_companion or kubernetes plugins; specifically targets Helm charts you mentioned, with 100+ stars and ties to helm-ls (500+ stars on mrjosh/helm-ls).
-kubectl.lua: Kubernetes resource browser with vim-like navigation for pods, deployments, etc. Why: Top result in GitHub search for Kubernetes/Helm plugins; 1k+ stars (Ramilito/kubectl.nvim); no overlap with your existing kubernetes.lua (assuming it's a different tool); enhances Helm/Kubernetes workflows with direct cluster interaction.
-fzf-lua-overlay.lua: Extension adding extra pickers to fzf-lua (e.g., recent files, lazy plugins, notes). Why: Direct match for your request for "fzf lua with all addons"; found via GitHub/Reddit searches; phanen/fzf-lua-overlay has 200+ stars and Dotfyle entry; non-overlapping, expands your fzf_lua without Telescope dependencies for complete replacement.
-overseer
-### Additional Mason Packages to Add
-These are further tools for Mason, focusing on Lua (since you're using Neovim/Lua config), and enhancing the existing ones for your languages without overlap. Selected based on GitHub popularity (e.g., high stars for lua_ls >5k) and Dotfyle integrations, where they appear in dev configs for self-configuring Neovim.
-
-- lua-language-server: LSP server for Lua, essential for Neovim plugin development and config autocompletion/diagnostics.
-- stylua: Formatter for Lua code, ensures consistent styling in your init.lua or plugins.
-- luacheck: Linter for Lua, catches errors and style issues in scripts.
-
-### More New Plugins to Add
-Based on 2025 sources like awesome-neovim lists, GitHub topics, and Dotfyle-derived popularity (e.g., high stars/usages in shared configs), here are additional non-overlapping plugins. I prioritized ones that extend fzf-lua (as requested), support your languages (Go/Python/YAML/Helm/K8s), or improve dev workflows. Excluded any overlaps with your original list or prior suggestions. Selections are from active repos with 500+ stars where applicable, and community mentions in 2025 content (e.g., videos/blogs on efficient setups).
-
-- nvim-dap-python.lua: Integrates Python debugging with nvim-dap, including support for pytest and virtualenvs. Why: mfussenegger/nvim-dap-python has 1k+ GitHub stars; top in Dotfyle for Python devs (500+ usages); pairs with your dap_go for consistent debugging across languages; no overlap with general dap tools.
-- project-fzf.nvim: Adds fzf-lua picker for project.nvim, enabling fuzzy project switching and management. Why: jakobwesthoff/project-fzf.nvim featured in 2025 Neovim videos (e.g., extensions series); 300+ stars; directly enhances "fzf lua with all addons" without Telescope; complements your project.lua for better navigation in multi-lang repos.
-- overseer.lua: Task runner for running/building commands (e.g., go build, python run, helm lint) with output parsing and templates. Why: stevearc/overseer.nvim has 2.5k+ GitHub stars; high Dotfyle ranking (1k+ usages); no overlap with your toggleterm or rest_nvim; useful for automating workflows in Go/Python/Helm projects, mentioned in 2025 awesome-neovim updates.
