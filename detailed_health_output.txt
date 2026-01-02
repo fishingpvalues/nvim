@@ -1,18 +1,30 @@
 
 === Checking vim.lsp ===
+
 Running healthchecks...
 
 
 === Checking vim.treesitter ===
+
 Running healthchecks...
 
 
 === Checking lazy ===
+
 Running healthchecks...
 
 
 === Checking provider ===
+
 Running healthchecks...
 
 
-=== Health check complete ===
+=== Checking mason ===
+
+Running healthchecks...
+
+
+=== Checking blink.cmp ===
+
+Running healthchecks...
+

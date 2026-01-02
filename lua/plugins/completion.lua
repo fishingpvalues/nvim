@@ -96,7 +96,7 @@ return {
           buffer = {
             name = "Buffer",
             module = "blink.cmp.sources.buffer",
-            fallback_for = { "lsp" },
+            fallbacks = { "lsp" },
           },
         },
       },
