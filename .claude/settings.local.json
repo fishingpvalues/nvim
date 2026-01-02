@@ -33,7 +33,17 @@
       "Bash(command grep -c \"Projects\" /storage/emulated/0/workdir/nvim/lua/plugins/ui.lua)",
       "Bash(command grep -c \"Update Plugins\" /storage/emulated/0/workdir/nvim/lua/plugins/ui.lua)",
       "Bash(command grep nvim)",
-      "Bash(readlink -f ~/.config/nvim)"
+      "Bash(readlink -f ~/.config/nvim)",
+      "Bash(mkdir:*)",
+      "WebSearch",
+      "Bash(lua:*)",
+      "Bash(for:*)",
+      "Bash(do echo \"Testing: $file\")",
+      "Bash(done)",
+      "Bash(do timeout 20 nvim --headless \"$file\" +qa)",
+      "Bash(timeout 120 nvim:*)",
+      "Bash(timeout 180 nvim:*)",
+      "Bash(timeout 90 nvim:*)"
     ]
   }
 }

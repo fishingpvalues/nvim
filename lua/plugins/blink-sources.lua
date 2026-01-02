@@ -5,7 +5,7 @@
 return {
   -- Blink conventional commits
   {
-    "Davincible/blink-cmp-conventional-commits",
+    "disrupted/blink-cmp-conventional-commits",
     ft = "gitcommit",
     dependencies = { "saghen/blink.cmp" },
     opts = {},
@@ -20,14 +20,14 @@ return {
 
   -- Blink env source
   {
-    "xzbdmw/blink-cmp-env",
+    "bydlw98/blink-cmp-env",
     dependencies = { "saghen/blink.cmp" },
     opts = {},
   },
 
   -- Blink git source
   {
-    "Snikimonkd/blink-cmp-git",
+    "Kaiser-Yang/blink-cmp-git",
     dependencies = { "saghen/blink.cmp" },
     ft = "gitcommit",
     opts = {},

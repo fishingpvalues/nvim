@@ -1,0 +1,14 @@
+
+=== Checking vim.lsp ===
+Running healthchecks...
+
+
+=== Checking vim.treesitter ===
+Running healthchecks...
+
+
+=== Checking lazy ===
+Running healthchecks...
+
+
+=== Checking provider ===

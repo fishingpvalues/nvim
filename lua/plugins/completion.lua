@@ -72,7 +72,7 @@ return {
       },
 
       sources = {
-        default = { "lsp", "path", "luasnip", "buffer" },
+        default = { "lsp", "path", "snippets", "buffer" },
         providers = {
           lsp = {
             name = "LSP",
@@ -93,17 +93,16 @@ return {
               show_hidden_files_by_default = false,
             },
           },
-          luasnip = {
-            name = "Luasnip",
-            module = "blink.cmp.sources.luasnip",
-            score_offset = 85,
-          },
           buffer = {
             name = "Buffer",
             module = "blink.cmp.sources.buffer",
             fallback_for = { "lsp" },
           },
         },
+      },
+
+      snippets = {
+        preset = "luasnip",
       },
 
       completion = {

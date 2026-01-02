@@ -212,7 +212,7 @@ return {
         highlighters = {
           hex_color = hi.gen_highlighter.hex_color(),
         },
-      },
+      }
     end,
   },
 

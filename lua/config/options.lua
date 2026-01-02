@@ -39,9 +39,9 @@ opt.listchars = {
 opt.fillchars = {
   eob = " ", -- Remove ~ from end of buffer
   fold = " ",
-  foldopen = "",
+  foldopen = "▾",
   foldsep = " ",
-  foldclose = "",
+  foldclose = "▸",
 }
 
 -- Search

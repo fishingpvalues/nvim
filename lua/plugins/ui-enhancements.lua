@@ -11,7 +11,7 @@ return {
       { "<leader>wp", function() require("dropbar.api").pick() end, desc = "Winbar Pick" },
     },
     opts = {
-      general = {
+      bar = {
         enable = function(buf, win)
           return vim.fn.win_gettype(win) == ""
             and vim.wo[win].winbar == ""
@@ -170,7 +170,7 @@ return {
 
   -- Noline (hide cursorline in inactive windows)
   {
-    "nvimdev/noline.nvim",
+    "neur1n/noline.nvim",
     event = { "BufReadPost", "BufNewFile" },
     opts = {},
   },
@@ -271,7 +271,7 @@ return {
 
   -- Agrolens (code lens)
   {
-    "dgagn/agrolens.nvim",
+    "desdic/agrolens.nvim",
     event = "LspAttach",
     opts = {
       enable = true,

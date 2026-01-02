@@ -79,6 +79,7 @@ return {
     "rest-nvim/rest.nvim",
     ft = "http",
     dependencies = { "nvim-lua/plenary.nvim" },
+    enabled = vim.fn.has("android") == 0, -- Disable on Android due to luarocks issues
     keys = {
       { "<leader>rr", "<cmd>Rest run<cr>", desc = "Run request under cursor", ft = "http" },
       { "<leader>rl", "<cmd>Rest run last<cr>", desc = "Re-run last request", ft = "http" },

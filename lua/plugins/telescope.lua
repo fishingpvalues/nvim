@@ -19,7 +19,7 @@ return {
       { "<leader>ta", "<cmd>Telescope aerial<cr>", desc = "Aerial" },
       { "<leader>tm", "<cmd>Telescope media_files<cr>", desc = "Media Files" },
       { "<leader>th", "<cmd>Telescope heading<cr>", desc = "Markdown Headings" },
-      { "<leader>tr", "<cmd>Telescope repo list<cr>", desc = "Repos" },
+      -- { "<leader>tr", "<cmd>Telescope repo list<cr>", desc = "Repos" }, -- Disabled: telescope-repo has healthcheck bug
     },
     opts = function()
       local actions = require("telescope.actions")
@@ -124,13 +124,14 @@ return {
   },
 
   -- Telescope repo (git repos)
-  {
-    "cljoly/telescope-repo.nvim",
-    dependencies = { "telescope.nvim" },
-    config = function()
-      require("telescope").load_extension("repo")
-    end,
-  },
+  -- Disabled due to healthcheck bug in upstream plugin
+  -- {
+  --   "cljoly/telescope-repo.nvim",
+  --   dependencies = { "telescope.nvim" },
+  --   config = function()
+  --     require("telescope").load_extension("repo")
+  --   end,
+  -- },
 
   -- Telescope all recent (frecency)
   {

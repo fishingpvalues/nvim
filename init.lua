@@ -81,6 +81,9 @@ require("lazy").setup({
       lazy = " ",
     },
   },
+  rocks = {
+    enabled = false, -- Disable luarocks support (incompatible with Android/Termux)
+  },
 })
 
 -- Load core configuration
