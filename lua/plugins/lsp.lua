@@ -183,14 +183,17 @@ return {
         marksman = {},
       }
 
-      -- Setup servers
+      -- Setup servers using new vim.lsp.config API (nvim 0.11+)
       for server, config in pairs(servers) do
         local server_opts = vim.tbl_deep_extend("force", {
           capabilities = vim.deepcopy(capabilities),
           on_attach = on_attach,
         }, config or {})
 
-        require("lspconfig")[server].setup(server_opts)
+        -- Set server configuration
+        vim.lsp.config[server] = server_opts
+        -- Enable the server
+        vim.lsp.enable(server)
       end
     end,
   },

@@ -18,7 +18,7 @@ return {
         goimports = "gopls",
         fillstruct = "gopls",
         gofmt = "gofumpt",
-        max_line_len = 120,
+        -- max_line_len only works with gofmt = "golines", not gofumpt
         tag_transform = false,
         test_dir = "",
         comment_placeholder = "   ",

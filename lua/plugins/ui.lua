@@ -298,6 +298,19 @@ return {
           },
           view = "mini",
         },
+        -- Skip annoying null-ls/none-ls code action notifications
+        {
+          filter = {
+            event = "notify",
+            any = {
+              { find = "code_action" },
+              { find = "code action" },
+              { find = "null%-ls" },
+              { find = "none%-ls" },
+            },
+          },
+          opts = { skip = true },
+        },
       },
       presets = {
         bottom_search = true,
@@ -344,7 +357,18 @@ return {
       end,
     },
     init = function()
-      vim.notify = require("notify")
+      -- Filter out annoying notifications before they reach notify
+      local notify = require("notify")
+      vim.notify = function(msg, level, opts)
+        -- Skip code action spam from null-ls/none-ls
+        if type(msg) == "string" then
+          if msg:match("code_action") or msg:match("code action") or
+             msg:match("null%-ls") or msg:match("none%-ls") then
+            return
+          end
+        end
+        notify(msg, level, opts)
+      end
     end,
   },
 

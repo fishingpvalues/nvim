@@ -72,7 +72,7 @@ return {
       },
 
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { "lsp", "path", "snippets", "buffer", "emoji", "env" },
         providers = {
           lsp = {
             name = "LSP",

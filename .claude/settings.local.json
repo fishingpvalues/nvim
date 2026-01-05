@@ -43,7 +43,12 @@
       "Bash(do timeout 20 nvim --headless \"$file\" +qa)",
       "Bash(timeout 120 nvim:*)",
       "Bash(timeout 180 nvim:*)",
-      "Bash(timeout 90 nvim:*)"
+      "Bash(timeout 90 nvim:*)",
+      "Bash(command rm -rf /Users/dfischer/.local/share/nvim/lazy/nvim-treesitter /Users/dfischer/.local/share/nvim/lazy/nvim-treesitter-textobjects)",
+      "WebFetch(domain:www.lazyvim.org)",
+      "WebFetch(domain:aliou.me)",
+      "Bash(command rm -rf /Users/dfischer/.local/share/nvim/lazy/nvim-treesitter-textobjects)",
+      "Bash(command rm -rf /Users/dfischer/.local/share/nvim/lazy/nvim-treesitter-textsubjects /Users/dfischer/.local/share/nvim/lazy/playground)"
     ]
   }
 }

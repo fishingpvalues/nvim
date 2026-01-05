@@ -3,34 +3,19 @@
 -- ============================================================================
 
 return {
-  -- Treesitter playground
+  -- Treesitter playground (disabled - incompatible with modern treesitter)
   {
     "nvim-treesitter/playground",
-    cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
-    keys = {
-      { "<leader>tp", "<cmd>TSPlaygroundToggle<cr>", desc = "Treesitter Playground" },
-      { "<leader>th", "<cmd>TSHighlightCapturesUnderCursor<cr>", desc = "Highlight Captures" },
-    },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    enabled = false,
+    -- Requires old nvim-treesitter.configs API
+    -- Use :Inspect and :InspectTree built into Neovim instead
   },
 
-  -- Treesitter textsubjects
+  -- Treesitter textsubjects (disabled - incompatible with modern treesitter)
   {
     "RRethy/nvim-treesitter-textsubjects",
-    event = { "BufReadPost", "BufNewFile" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("nvim-treesitter.config").setup({
-        textsubjects = {
-          enable = true,
-          prev_selection = ",",
-          keymaps = {
-            ["."] = "textsubjects-smart",
-            [";"] = "textsubjects-container-outer",
-            ["i;"] = "textsubjects-container-inner",
-          },
-        },
-      })
-    end,
+    enabled = false,
+    -- Requires nvim-treesitter.query module which no longer exists
+    -- Use built-in text objects or mini.ai as alternative
   },
 }

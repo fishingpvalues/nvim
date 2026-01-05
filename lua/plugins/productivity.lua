@@ -59,8 +59,11 @@ return {
   -- Esqueleto (file templates)
   {
     "cvigilv/esqueleto.nvim",
+    cmd = "Esqueleto",
+    event = "BufNewFile",
     opts = {
       directories = { vim.fn.stdpath("config") .. "/skeletons" },
+      patterns = { "*" }, -- Match all files (specific patterns determined by skeleton files)
     },
   },
 

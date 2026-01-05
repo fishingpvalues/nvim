@@ -5,11 +5,11 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main", -- Use main branch instead of master
     version = false,
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
@@ -17,90 +17,51 @@ return {
       { "<c-space>", desc = "Increment selection" },
       { "<bs>", desc = "Decrement selection", mode = "x" },
     },
-    opts = {
-      ensure_installed = {
-        "bash",
-        "c",
-        "diff",
-        "go",
-        "gomod",
-        "gowork",
-        "gosum",
-        "python",
-        "yaml",
-        "lua",
-        "luadoc",
-        "markdown",
-        "markdown_inline",
-        "query",
-        "regex",
-        "vim",
-        "vimdoc",
-        "json",
-        "jsonc",
-        "dockerfile",
-        "html",
-        "css",
-        "javascript",
-        "typescript",
-        "tsx",
-      },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
-      indent = { enable = true },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
+    config = function()
+      -- Modern nvim-treesitter API (no .configs module)
+      local ts = require("nvim-treesitter")
+
+      -- Setup treesitter
+      ts.setup()
+
+      -- Install parsers
+      local parsers = {
+        "bash", "c", "diff", "go", "gomod", "gowork", "gosum",
+        "python", "yaml", "lua", "luadoc", "markdown", "markdown_inline",
+        "query", "regex", "vim", "vimdoc", "json", "jsonc",
+        "dockerfile", "html", "css", "javascript", "typescript", "tsx",
+      }
+
+      ts.install(parsers)
+
+      -- Enable features via autocmd (only for supported filetypes)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "bash", "c", "diff", "go", "gomod", "python", "yaml", "lua",
+          "markdown", "vim", "json", "jsonc", "dockerfile", "html", "css",
+          "javascript", "typescript", "typescriptreact", "sh", "zsh",
         },
-      },
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-            ["aa"] = "@parameter.outer",
-            ["ia"] = "@parameter.inner",
-          },
-        },
-        move = {
-          enable = true,
-          set_jumps = true,
-          goto_next_start = {
-            ["]f"] = "@function.outer",
-            ["]c"] = "@class.outer",
-            ["]a"] = "@parameter.inner",
-          },
-          goto_next_end = {
-            ["]F"] = "@function.outer",
-            ["]C"] = "@class.outer",
-            ["]A"] = "@parameter.inner",
-          },
-          goto_previous_start = {
-            ["[f"] = "@function.outer",
-            ["[c"] = "@class.outer",
-            ["[a"] = "@parameter.inner",
-          },
-          goto_previous_end = {
-            ["[F"] = "@function.outer",
-            ["[C"] = "@class.outer",
-            ["[A"] = "@parameter.inner",
-          },
-        },
-      },
-    },
-    config = function(_, opts)
-      require("nvim-treesitter.config").setup(opts)
+        callback = function()
+          -- Enable treesitter highlighting (safely)
+          pcall(vim.treesitter.start)
+
+          -- Enable treesitter indentation
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+
+      -- Incremental selection keymaps
+      vim.keymap.set("n", "<C-space>", function()
+        vim.cmd("normal! viw")
+      end, { desc = "Init selection" })
+
+      vim.keymap.set("x", "<C-space>", function()
+        vim.cmd("normal! viw")
+      end, { desc = "Increment selection" })
+
+      vim.keymap.set("x", "<bs>", function()
+        vim.cmd("normal! V")
+      end, { desc = "Decrement selection" })
     end,
   },
 

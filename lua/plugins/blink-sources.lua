@@ -8,21 +8,21 @@ return {
     "disrupted/blink-cmp-conventional-commits",
     ft = "gitcommit",
     dependencies = { "saghen/blink.cmp" },
-    opts = {},
+    lazy = true,
   },
 
   -- Blink emoji source
   {
     "moyiz/blink-emoji.nvim",
     dependencies = { "saghen/blink.cmp" },
-    opts = {},
+    lazy = true,
   },
 
   -- Blink env source
   {
     "bydlw98/blink-cmp-env",
     dependencies = { "saghen/blink.cmp" },
-    opts = {},
+    lazy = true,
   },
 
   -- Blink git source
@@ -30,13 +30,14 @@ return {
     "Kaiser-Yang/blink-cmp-git",
     dependencies = { "saghen/blink.cmp" },
     ft = "gitcommit",
-    opts = {},
+    lazy = true,
   },
 
   -- Blink ripgrep source (fast fuzzy completion from project)
   {
     "mikavilpas/blink-ripgrep.nvim",
     dependencies = { "saghen/blink.cmp" },
+    lazy = true,
     opts = {
       prefix_min_len = 3,
       get_command = function()
@@ -52,7 +53,7 @@ return {
       return os.getenv("TMUX") ~= nil
     end,
     dependencies = { "saghen/blink.cmp" },
-    opts = {},
+    lazy = true,
   },
 
   -- Blink compat for compatibility with nvim-cmp sources
@@ -60,6 +61,5 @@ return {
     "saghen/blink.compat",
     version = "*",
     lazy = true,
-    opts = {},
   },
 }

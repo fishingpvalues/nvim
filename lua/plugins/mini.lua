@@ -63,7 +63,6 @@ return {
       require("mini.snippets").setup({
         snippets = {
           require("mini.snippets").gen_loader.from_file("~/.config/nvim/snippets"),
-          require("mini.snippets").default_insert(),
         },
       })
     end,

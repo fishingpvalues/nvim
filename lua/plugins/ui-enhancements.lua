@@ -168,23 +168,20 @@ return {
     end,
   },
 
-  -- Noline (hide cursorline in inactive windows)
+  -- Noline (statusline framework - disabled, already using lualine)
   {
     "neur1n/noline.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {},
+    enabled = false,
+    -- This is a minimal statusline framework requiring custom components
+    -- Already using lualine.nvim which is more feature-complete
   },
 
-  -- Vimade (dim inactive windows)
+  -- Vimade (dim inactive windows) - Disabled due to compatibility issues
   {
     "TaDaa/vimade",
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      vim.g.vimade = {
-        fadelevel = 0.7,
-        enablesigns = 1,
-      }
-    end,
+    enabled = false,
+    -- Error: E716: Key not present in Dictionary: "__recipe"
+    -- Consider using alternatives like 'nvim-focus' or 'focus.nvim' instead
   },
 
   -- No neck pain (center buffer)
