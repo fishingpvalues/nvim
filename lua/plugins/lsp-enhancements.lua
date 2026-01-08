@@ -58,40 +58,13 @@ return {
     },
   },
 
-  -- LSPSaga
-  {
-    "nvimdev/lspsaga.nvim",
-    event = "LspAttach",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-    keys = {
-      { "gh", "<cmd>Lspsaga finder<cr>", desc = "LSP Finder" },
-      { "gp", "<cmd>Lspsaga peek_definition<cr>", desc = "Peek Definition" },
-      { "<leader>ca", "<cmd>Lspsaga code_action<cr>", desc = "Code Action", mode = { "n", "v" } },
-      { "<leader>rn", "<cmd>Lspsaga rename<cr>", desc = "Rename" },
-      { "<leader>o", "<cmd>Lspsaga outline<cr>", desc = "Outline" },
-      { "K", "<cmd>Lspsaga hover_doc<cr>", desc = "Hover Doc" },
-      { "[e", "<cmd>Lspsaga diagnostic_jump_prev<cr>", desc = "Prev Diagnostic" },
-      { "]e", "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Next Diagnostic" },
-      { "<leader>ci", "<cmd>Lspsaga incoming_calls<cr>", desc = "Incoming Calls" },
-      { "<leader>co", "<cmd>Lspsaga outgoing_calls<cr>", desc = "Outgoing Calls" },
-    },
-    opts = {
-      ui = {
-        border = "rounded",
-        code_action = "",
-      },
-      lightbulb = {
-        enable = false,
-        sign = false,
-      },
-      symbol_in_winbar = {
-        enable = false,
-      },
-    },
-  },
+  -- Removed LSPSaga - functionality replaced by:
+  -- - Code actions: actions-preview.nvim (lua/plugins/utilities.lua)
+  -- - Hover: native LSP + lsp_signature.nvim
+  -- - Rename: inc-rename.nvim (lua/plugins/utilities.lua)
+  -- - Outline: outline.nvim (lua/plugins/extras.lua)
+  -- - Goto: glance.nvim (lua/plugins/utilities.lua)
+  -- - Peek definition: goto-preview.nvim (lua/plugins/utilities.lua)
 
   -- LSP Kind (icons for completion)
   {

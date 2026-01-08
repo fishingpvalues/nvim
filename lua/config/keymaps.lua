@@ -9,11 +9,8 @@ local opts = { noremap = true, silent = true }
 keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
--- Move to window using the <ctrl> hjkl keys
-keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
-keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
-keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
-keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
+-- Window navigation handled by smart-splits.nvim (see lua/plugins/extras.lua)
+-- Removed basic <C-h/j/k/l> mappings to avoid conflicts
 
 -- Resize window using <ctrl> arrow keys
 keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
@@ -29,14 +26,11 @@ keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
--- Buffers
+-- Buffers ([b, ]b handled by BufferLine in lua/plugins/ui.lua)
 keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
-keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
-keymap.set("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete buffer and window" })
+-- Buffer deletion handled by mini.bufremove (see lua/plugins/utilities.lua)
 
 -- Clear search with <esc>
 keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
@@ -75,10 +69,7 @@ keymap.set("n", "<leader>ui", vim.show_pos, { desc = "Inspect pos" })
 
 -- Terminal
 keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter normal mode" })
-keymap.set("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
-keymap.set("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to lower window" })
-keymap.set("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
-keymap.set("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
+-- Terminal window navigation handled by smart-splits.nvim
 keymap.set("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide terminal" })
 
 -- Windows

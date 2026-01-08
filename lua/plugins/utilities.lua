@@ -155,6 +155,28 @@ return {
     },
   },
 
+  -- Calculator
+  {
+    "necrom4/calcium.nvim",
+    cmd = { "Calcium" },
+    keys = {
+      { "<leader>=", "<cmd>Calcium<cr>", desc = "Calculate", mode = { "n", "v" } },
+      { "<leader>==", "<cmd>Calcium scratchpad<cr>", desc = "Calculator scratchpad" },
+    },
+    opts = {
+      notifications = true,
+      default_mode = "append",
+      scratchpad = {
+        border = "rounded",
+        virtual_text = {
+          format = "= %s",
+          highlight_group = "Comment",
+        },
+        result_variable = "ans",
+      },
+    },
+  },
+
   -- Better folding
   {
     "kevinhwang91/nvim-ufo",
@@ -183,16 +205,7 @@ return {
     config = true,
   },
 
-  -- Spectre (search and replace)
-  {
-    "nvim-pack/nvim-spectre",
-    build = false,
-    cmd = "Spectre",
-    opts = { open_cmd = "noswapfile vnew" },
-    keys = {
-      { "<leader>sr", function() require("spectre").toggle() end, desc = "Replace in files (Spectre)" },
-    },
-  },
+  -- Removed nvim-spectre - functionality replaced by grug-far.nvim (see lua/plugins/search-replace.lua)
 
   -- Mini modules
   {
@@ -224,15 +237,16 @@ return {
     },
   },
 
-  -- Glance (LSP references/definitions)
+  -- Glance (LSP references/definitions with better UI)
   {
     "dnlhc/glance.nvim",
     cmd = "Glance",
     keys = {
-      { "gD", "<cmd>Glance definitions<cr>", desc = "Glance definitions" },
-      { "gR", "<cmd>Glance references<cr>", desc = "Glance references" },
-      { "gY", "<cmd>Glance type_definitions<cr>", desc = "Glance type definitions" },
-      { "gM", "<cmd>Glance implementations<cr>", desc = "Glance implementations" },
+      -- Changed from g* to <leader>g* to avoid conflicts with native LSP (see lua/plugins/lsp.lua)
+      { "<leader>gd", "<cmd>Glance definitions<cr>", desc = "Glance definitions" },
+      { "<leader>gr", "<cmd>Glance references<cr>", desc = "Glance references" },
+      { "<leader>gy", "<cmd>Glance type_definitions<cr>", desc = "Glance type definitions" },
+      { "<leader>gi", "<cmd>Glance implementations<cr>", desc = "Glance implementations" },
     },
     opts = {},
   },

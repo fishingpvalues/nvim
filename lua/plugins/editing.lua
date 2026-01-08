@@ -126,6 +126,25 @@ return {
     end,
   },
 
+  -- Smart backspace
+  {
+    "qwavies/smart-backspace.nvim",
+    event = { "InsertEnter", "CmdlineEnter" },
+    opts = {
+      enabled = true,
+      silent = true,
+      disabled_filetypes = {
+        "py",
+        "hs",
+        "md",
+        "txt",
+      },
+    },
+    keys = {
+      { "<leader>bs", "<cmd>SmartBackspaceToggle<cr>", desc = "Toggle Smart Backspace" },
+    },
+  },
+
   -- Dial (increment/decrement)
   {
     "monaqa/dial.nvim",

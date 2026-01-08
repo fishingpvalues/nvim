@@ -9,7 +9,7 @@ return {
     keys = {
       { "H", function() require("arrow.persist").previous() end, desc = "Arrow Previous" },
       { "L", function() require("arrow.persist").next() end, desc = "Arrow Next" },
-      { "<leader>m", function() require("arrow.ui").openMenu() end, desc = "Arrow Menu" },
+      { "<leader>am", function() require("arrow.ui").openMenu() end, desc = "Arrow Menu" },
     },
     opts = {
       show_icons = true,
@@ -26,8 +26,8 @@ return {
       "ThePrimeagen/harpoon",
     },
     keys = {
-      { "<leader>o", "<cmd>Portal jumplist backward<cr>", desc = "Portal Backward" },
-      { "<leader>i", "<cmd>Portal jumplist forward<cr>", desc = "Portal Forward" },
+      { "<leader>po", "<cmd>Portal jumplist backward<cr>", desc = "Portal Backward" },
+      { "<leader>pi", "<cmd>Portal jumplist forward<cr>", desc = "Portal Forward" },
     },
     opts = {},
   },
@@ -72,15 +72,7 @@ return {
     },
   },
 
-  -- Bufdelete (better buffer deletion)
-  {
-    "famiu/bufdelete.nvim",
-    cmd = { "Bdelete", "Bwipeout" },
-    keys = {
-      { "<leader>bd", "<cmd>Bdelete<cr>", desc = "Delete Buffer" },
-      { "<leader>bw", "<cmd>Bwipeout<cr>", desc = "Wipeout Buffer" },
-    },
-  },
+  -- Removed bufdelete.nvim - functionality replaced by mini.bufremove (see lua/plugins/utilities.lua)
 
   -- Yazi (file manager)
   {

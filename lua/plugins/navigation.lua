@@ -25,7 +25,7 @@ return {
       { "<leader>fD", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace Diagnostics" },
       { "<leader>fs", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "Document Symbols" },
       { "<leader>fS", "<cmd>FzfLua lsp_workspace_symbols<cr>", desc = "Workspace Symbols" },
-      { "<leader>gc", "<cmd>FzfLua git_commits<cr>", desc = "Git Commits" },
+      { "<leader>gC", "<cmd>FzfLua git_commits<cr>", desc = "Browse Git Commits" },  -- Changed from <leader>gc to avoid conflict with Neogit
       { "<leader>gs", "<cmd>FzfLua git_status<cr>", desc = "Git Status" },
       { "<leader>gb", "<cmd>FzfLua git_branches<cr>", desc = "Git Branches" },
     },

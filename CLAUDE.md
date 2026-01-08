@@ -422,3 +422,269 @@ When modifying plugin configurations:
 - **lua/plugins/formatting.lua** - Formatters and linters
 - **lua/plugins/navigation.lua** - FZF-Lua, file navigation
 - **lua/plugins/completion.lua** - Blink.cmp setup
+
+---
+
+# SOTA Keybinding Reference
+
+This section provides a comprehensive reference of all keybindings after conflict resolution and optimization.
+
+## Core Navigation
+
+### Window Navigation (smart-splits.nvim)
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<C-h>` | n, t | Move to left split | extras.lua |
+| `<C-j>` | n, t | Move to below split | extras.lua |
+| `<C-k>` | n, t | Move to above split | extras.lua |
+| `<C-l>` | n, t | Move to right split | extras.lua |
+| `<C-\>` | n | Move to previous split | extras.lua |
+| `<A-h>` | n | Resize split left | extras.lua |
+| `<A-j>` | n | Resize split down | extras.lua |
+| `<A-k>` | n | Resize split up | extras.lua |
+| `<A-l>` | n | Resize split right | extras.lua |
+
+**Resolved Conflicts:** Removed Navigator.nvim and basic window navigation keymaps in favor of smart-splits.
+
+### Buffer Navigation (BufferLine)
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<S-h>` | n | Previous buffer | keymaps.lua |
+| `<S-l>` | n | Next buffer | keymaps.lua |
+| `[b` | n | BufferLine cycle prev | ui.lua |
+| `]b` | n | BufferLine cycle next | ui.lua |
+| `<leader>bb` | n | Switch to other buffer | keymaps.lua |
+| `<leader>bd` | n | Delete buffer (mini.bufremove) | utilities.lua |
+| `<leader>bD` | n | Delete buffer (force) | utilities.lua |
+| `<leader>bp` | n | Toggle pin | ui.lua |
+| `<leader>bo` | n | Delete other buffers | ui.lua |
+| `<leader>bm` | n | Buffer manager | file-navigation.lua |
+
+**Resolved Conflicts:** Removed bufdelete.nvim and basic bdelete commands. mini.bufremove is now the standard.
+
+### Scrolling (Neoscroll)
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<C-u>` | n, v, x | Scroll up | file-navigation.lua |
+| `<C-d>` | n, v, x | Scroll down | file-navigation.lua |
+| `<C-b>` | n, v, x | Page up | file-navigation.lua |
+| `<C-f>` | n, v, x | Page down | file-navigation.lua |
+| `<C-y>` | n, v, x | Scroll viewport up | file-navigation.lua |
+| `<C-e>` | n, v, x | Scroll viewport down | file-navigation.lua |
+
+**Resolved Conflicts:** Noice LSP scroll changed to `<C-S-d>/<C-S-u>`. Blink.cmp uses context-aware `<C-b>/<C-f>` only in completion menu.
+
+## LSP Keybindings
+
+### Native LSP (lsp.lua)
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `gd` | n | Goto definition | lsp.lua |
+| `gr` | n | Goto references | lsp.lua |
+| `gI` | n | Goto implementation | lsp.lua |
+| `gy` | n | Goto type definition | lsp.lua |
+| `gD` | n | Goto declaration | lsp.lua |
+| `K` | n | Hover documentation | lsp.lua |
+| `gK` | n | Signature help | lsp.lua |
+| `<C-k>` | i | Signature help | lsp.lua |
+| `<leader>ca` | n, v | Code action (actions-preview) | utilities.lua |
+| `<leader>cr` | n | Rename | lsp.lua |
+| `<leader>cf` | n | Format buffer | lsp.lua |
+| `]d` | n | Next diagnostic | lsp.lua |
+| `[d` | n | Prev diagnostic | lsp.lua |
+| `<leader>cd` | n | Line diagnostics | lsp.lua |
+
+**Resolved Conflicts:**
+- Removed LSPSaga (conflicted with K, `<leader>ca`, `<leader>rn`, `<leader>o`)
+- `<C-k>` insert mode reserved for LSP signature (Telescope history moved to `<Up>/<Down>`)
+
+### Enhanced LSP Navigation
+
+#### Glance (Better UI for LSP navigation)
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>gd` | n | Glance definitions | utilities.lua |
+| `<leader>gr` | n | Glance references | utilities.lua |
+| `<leader>gy` | n | Glance type definitions | utilities.lua |
+| `<leader>gi` | n | Glance implementations | utilities.lua |
+
+**Resolved Conflicts:** Changed from `g*` keys to `<leader>g*` to avoid conflicts with native LSP.
+
+#### Goto Preview
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `gpd` | n | Preview definition | utilities.lua |
+| `gpt` | n | Preview type definition | utilities.lua |
+| `gpi` | n | Preview implementation | utilities.lua |
+| `gpr` | n | Preview references | utilities.lua |
+| `gP` | n | Close all preview windows | utilities.lua |
+
+#### Inc-Rename
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>rn` | n | Incremental rename | utilities.lua |
+
+**Resolved Conflicts:** Removed LSPSaga rename in favor of inc-rename.
+
+### Code Outline
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>o` | n | Toggle outline | extras.lua |
+| `<leader>nv` | n | Navbuddy | lsp-enhancements.lua |
+
+**Resolved Conflicts:**
+- Removed LSPSaga outline
+- Portal jumplist moved to `<leader>po/pi`
+- outline.nvim is the standard for `<leader>o`
+
+## File Navigation
+
+### FZF-Lua
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>ff` | n | Find files | navigation.lua |
+| `<leader>fr` | n | Recent files | navigation.lua |
+| `<leader>fb` | n | Buffers | navigation.lua |
+| `<leader>fg` | n | Live grep | navigation.lua |
+| `<leader>fw` | n | Grep word under cursor | navigation.lua |
+| `<leader>fh` | n | Help tags | navigation.lua |
+| `<leader>fc` | n | Commands | navigation.lua |
+| `<leader>fk` | n | Keymaps | navigation.lua |
+| `<leader>fd` | n | Document diagnostics | navigation.lua |
+| `<leader>fD` | n | Workspace diagnostics | navigation.lua |
+| `<leader>fs` | n | Document symbols | navigation.lua |
+| `<leader>fS` | n | Workspace symbols | navigation.lua |
+
+### File Explorers
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>e` | n | Toggle Neo-tree | navigation.lua |
+| `<leader>o` | n | Oil.nvim (directory editor) | navigation.lua |
+| `<leader>y` | n | Yazi file manager | file-navigation.lua |
+
+### Quick File Bookmarks
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `H` | n | Arrow previous | file-navigation.lua |
+| `L` | n | Arrow next | file-navigation.lua |
+| `<leader>am` | n | Arrow menu | file-navigation.lua |
+
+**Resolved Conflicts:** Changed from `<leader>m` to `<leader>am` to avoid conflict with Multicursors.
+
+### Jump List Navigation
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>po` | n | Portal jumplist backward | file-navigation.lua |
+| `<leader>pi` | n | Portal jumplist forward | file-navigation.lua |
+
+**Resolved Conflicts:** Changed from `<leader>o/i` to `<leader>po/pi` to avoid conflict with outline.nvim.
+
+## Git Keybindings
+
+### Gitsigns (Hunk Operations)
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `]h` | n | Next hunk | git.lua |
+| `[h` | n | Prev hunk | git.lua |
+| `<leader>ghs` | n, v | Stage hunk | git.lua |
+| `<leader>ghr` | n, v | Reset hunk | git.lua |
+| `<leader>ghS` | n | Stage buffer | git.lua |
+| `<leader>ghu` | n | Undo stage hunk | git.lua |
+| `<leader>ghR` | n | Reset buffer | git.lua |
+| `<leader>ghp` | n | Preview hunk | git.lua |
+| `<leader>ghb` | n | Blame line | git.lua |
+| `<leader>ghd` | n | Diff this | git.lua |
+| `<leader>ghD` | n | Diff this ~ | git.lua |
+
+### Git UI
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>gg` | n | Neogit (Git status UI) | git.lua |
+| `<leader>gc` | n | Neogit commit | git.lua |
+| `<leader>gC` | n | Browse git commits (FZF) | navigation.lua |
+| `<leader>gs` | n | Git status (FZF) | navigation.lua |
+| `<leader>gb` | n | Git branches (FZF) | navigation.lua |
+| `<leader>gd` | n | DiffView open | git.lua |
+| `<leader>gh` | n | File history | git.lua |
+| `<leader>gG` | n | Fugitive | git.lua |
+
+**Resolved Conflicts:** FZF git commits changed from `<leader>gc` to `<leader>gC` to prioritize Neogit commit.
+
+## Editing
+
+### Multicursors
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>m` | n, v | Multicursors start | editing.lua |
+
+**Resolved Conflicts:** Arrow menu moved to `<leader>am`.
+
+### Smart Backspace
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<Backspace>` | i | Smart backspace | editing.lua |
+| `<leader>bs` | n | Toggle smart backspace | editing.lua |
+
+### Calculator (Calcium)
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>=` | n, v | Calculate expression | utilities.lua |
+| `<leader>==` | n | Calculator scratchpad | utilities.lua |
+
+## Search & Replace
+
+### Grug-far (Primary Search/Replace)
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>sr` | n | Search and replace | search-replace.lua |
+| `<leader>sR` | n, x | Structural replace (SSR) | search-replace.lua |
+| `<leader>fs` | n, x | Rip substitute | search-replace.lua |
+
+**Resolved Conflicts:** Removed nvim-spectre in favor of grug-far.
+
+## Testing & Debugging
+
+### Neotest
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>tn` | n | Run nearest test | extras.lua |
+| `<leader>tf` | n | Run current file | extras.lua |
+| `<leader>td` | n | Debug nearest test | extras.lua |
+| `<leader>ts` | n | Toggle summary | extras.lua |
+| `<leader>to` | n | Show output | extras.lua |
+
+### DAP (Debugging)
+| Key | Mode | Action | File |
+|-----|------|--------|------|
+| `<leader>db` | n | Toggle breakpoint | dap.lua |
+| `<leader>dB` | n | Conditional breakpoint | dap.lua |
+| `<leader>dc` | n | Continue | dap.lua |
+| `<leader>di` | n | Step into | dap.lua |
+| `<leader>do` | n | Step over | dap.lua |
+| `<leader>dO` | n | Step out | dap.lua |
+| `<leader>dt` | n | Terminate | dap.lua |
+
+## Conflict Resolution Summary
+
+### Removed Plugins
+1. **Navigator.nvim** - Replaced by smart-splits.nvim (full tmux/kitty/wezterm integration)
+2. **LSPSaga** - Replaced by:
+   - actions-preview.nvim (code actions)
+   - inc-rename.nvim (rename)
+   - Native LSP + lsp_signature.nvim (hover/signature)
+   - outline.nvim (outline)
+   - glance.nvim + goto-preview.nvim (navigation)
+3. **nvim-spectre** - Replaced by grug-far.nvim (better UI)
+4. **bufdelete.nvim** - Replaced by mini.bufremove (more robust)
+
+### Key Changes
+1. **`<C-h/j/k/l>`**: Now exclusively used by smart-splits (removed from basic keymaps and Navigator)
+2. **`<C-k>` (insert mode)**: Reserved for LSP signature help (Telescope history moved to `<Up>/<Down>`)
+3. **`<C-b>/<C-f>`**: Reserved for Neoscroll page navigation (Noice changed to `<C-S-d>/<C-S-u>`)
+4. **`<leader>o`**: Reserved for outline.nvim (Portal moved to `<leader>po/pi`)
+5. **`<leader>m`**: Reserved for Multicursors (Arrow moved to `<leader>am`)
+6. **`<leader>gc`**: Reserved for Neogit commit (FZF commits moved to `<leader>gC`)
+7. **`<leader>sr`**: Reserved for grug-far (Spectre removed)
+8. **`<leader>ca`**: Reserved for actions-preview (LSPSaga removed)
+9. **`<leader>rn`**: Reserved for inc-rename (LSPSaga removed)
+10. **`<leader>bd`**: Reserved for mini.bufremove (bufdelete removed, basic bdelete removed)

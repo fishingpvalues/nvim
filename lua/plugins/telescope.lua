@@ -33,8 +33,8 @@ return {
             i = {
               ["<C-n>"] = actions.move_selection_next,
               ["<C-p>"] = actions.move_selection_previous,
-              ["<C-j>"] = actions.cycle_history_next,
-              ["<C-k>"] = actions.cycle_history_prev,
+              ["<Down>"] = actions.cycle_history_next,  -- Changed from <C-j> to avoid conflict with smart-splits
+              ["<Up>"] = actions.cycle_history_prev,    -- Changed from <C-k> to avoid conflict with LSP signature
               ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
               ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
               ["<esc>"] = actions.close,

@@ -187,16 +187,25 @@ return {
     end,
   },
 
-  -- Smart splits
+  -- Smart splits (window navigation + tmux/kitty/wezterm integration)
   {
     "mrjones2014/smart-splits.nvim",
     lazy = false,
     keys = {
-      { "<C-h>", function() require("smart-splits").move_cursor_left() end, desc = "Move to left split" },
-      { "<C-j>", function() require("smart-splits").move_cursor_down() end, desc = "Move to below split" },
-      { "<C-k>", function() require("smart-splits").move_cursor_up() end, desc = "Move to above split" },
-      { "<C-l>", function() require("smart-splits").move_cursor_right() end, desc = "Move to right split" },
+      { "<C-h>", function() require("smart-splits").move_cursor_left() end, mode = { "n", "t" }, desc = "Move to left split" },
+      { "<C-j>", function() require("smart-splits").move_cursor_down() end, mode = { "n", "t" }, desc = "Move to below split" },
+      { "<C-k>", function() require("smart-splits").move_cursor_up() end, mode = { "n", "t" }, desc = "Move to above split" },
+      { "<C-l>", function() require("smart-splits").move_cursor_right() end, mode = { "n", "t" }, desc = "Move to right split" },
       { "<C-\\>", function() require("smart-splits").move_cursor_previous() end, desc = "Move to previous split" },
+      -- Smart resizing
+      { "<A-h>", function() require("smart-splits").resize_left() end, desc = "Resize split left" },
+      { "<A-j>", function() require("smart-splits").resize_down() end, desc = "Resize split down" },
+      { "<A-k>", function() require("smart-splits").resize_up() end, desc = "Resize split up" },
+      { "<A-l>", function() require("smart-splits").resize_right() end, desc = "Resize split right" },
+    },
+    opts = {
+      ignored_filetypes = { "nofile", "quickfix", "prompt" },
+      ignored_buftypes = { "NvimTree", "neo-tree" },
     },
   },
 

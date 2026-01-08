@@ -285,7 +285,7 @@ return {
       break_undo = true,
       check_comma = true,
       map_cr = true,
-      map_bs = true,
+      map_bs = false, -- Disabled for smart-backspace.nvim compatibility
       map_c_h = false,
       map_c_w = false,
     },

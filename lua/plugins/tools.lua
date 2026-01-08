@@ -69,17 +69,7 @@ return {
     opts = {},
   },
 
-  -- Navigator (tmux/kitty/wezterm integration)
-  {
-    "numToStr/Navigator.nvim",
-    keys = {
-      { "<C-h>", "<cmd>NavigatorLeft<cr>", mode = { "n", "t" }, desc = "Navigate Left" },
-      { "<C-j>", "<cmd>NavigatorDown<cr>", mode = { "n", "t" }, desc = "Navigate Down" },
-      { "<C-k>", "<cmd>NavigatorUp<cr>", mode = { "n", "t" }, desc = "Navigate Up" },
-      { "<C-l>", "<cmd>NavigatorRight<cr>", mode = { "n", "t" }, desc = "Navigate Right" },
-    },
-    opts = {},
-  },
+  -- Removed Navigator.nvim - functionality replaced by smart-splits.nvim (see lua/plugins/extras.lua)
 
   -- Open (open files with system default)
   {
