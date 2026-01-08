@@ -49,7 +49,7 @@ nvim/
 │       ├── navigation.lua          # FZF-Lua, Neo-tree, Oil, Harpoon
 │       ├── editing.lua             # Flash, surround, comment, multicursors
 │       ├── formatting.lua          # Conform.nvim, nvim-lint
-│       ├── git.lua                 # Gitsigns, Neogit, Diffview, Fugitive
+│       ├── git.lua                 # Gitsigns, Neogit, CodeDiff, Fugitive
 │       ├── dap.lua                 # nvim-dap with UI
 │       ├── extras.lua              # Neotest, refactoring, REST, database
 │       ├── lang-go.lua             # Go-specific tools
@@ -264,10 +264,11 @@ Inline git change indicators with:
 - `<leader>hd` - Diff this
 - `<leader>hD` - Diff this ~
 
-### Neogit & Diffview
+### Neogit & CodeDiff
 
 - **Neogit**: `<leader>gg` - Git status UI (Magit-like)
-- **Diffview**: `<leader>gd` - Open diff view
+- **CodeDiff**: `<leader>gd` - VSCode-style diff explorer with two-tier highlighting
+- **CodeDiff File History**: `<leader>gh` - Compare current file with HEAD
 - **Fugitive**: Classic vim-fugitive commands available
 
 ## Language-Specific Features
@@ -604,8 +605,8 @@ This section provides a comprehensive reference of all keybindings after conflic
 | `<leader>gC` | n | Browse git commits (FZF) | navigation.lua |
 | `<leader>gs` | n | Git status (FZF) | navigation.lua |
 | `<leader>gb` | n | Git branches (FZF) | navigation.lua |
-| `<leader>gd` | n | DiffView open | git.lua |
-| `<leader>gh` | n | File history | git.lua |
+| `<leader>gd` | n | CodeDiff Explorer | git.lua |
+| `<leader>gh` | n | CodeDiff File History (HEAD) | git.lua |
 | `<leader>gG` | n | Fugitive | git.lua |
 
 **Resolved Conflicts:** FZF git commits changed from `<leader>gc` to `<leader>gC` to prioritize Neogit commit.
