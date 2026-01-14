@@ -65,6 +65,11 @@ return {
       directories = { vim.fn.stdpath("config") .. "/skeletons" },
       patterns = { "*" }, -- Match all files (specific patterns determined by skeleton files)
     },
+    config = function()
+      require("esqueleto").setup({
+        directories = { vim.fn.stdpath("config") .. "/skeletons" },
+      })
+    end,
   },
 
   -- Scissors (snippet manager)
